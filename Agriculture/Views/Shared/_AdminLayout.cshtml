@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/leaflat/leaflet.css" rel="stylesheet" />
+    <script src="~/Scripts/leaflet/leaflet.js"></script>
+    <script src="~/Scripts/leaflet/leaflet-src.js"></script>
+    <script src="~/Scripts/leaflet/leaflet-src.esm.js"></script>
+
+    <link href="/Content/bootstrap/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/adminlte.css" rel="stylesheet" />
+    <link href="~/Content/Admin/animate.css" rel="stylesheet" />
+    <link href="~/Scripts/Admin/aadminlte/custom-style.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/styles/kendo.bootstrap.mobile.min.css" rel="stylesheet" />
+    <link href="/Content/FontAweasome/all.min.css" rel="stylesheet" />
+
+    <style>
+        .border-radios-0 {
+            border-radius: 0;
+        }
+
+        .main-header > .navbar-nav > li > .navlink {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: orange
+        }
+
+        .prl-20 {
+            padding: 0 20px;
+        }
+
+        .user {
+            border: aliceblue solid 1px;
+            background-color: whitesmoke;
+        }
+
+        .display-inline-flex {
+            display: inline-flex !important;
+        }
+    </style>
+    <link href="~/Scripts/farbtastic.css" rel="stylesheet" />
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/Bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/Bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/danScripts.js"></script>
+
+    <script src="~/Scripts/FontAweasome/all.min.js"></script>
+    <script src="~/Scripts/Admin/aadminlte/adminlte.js"></script>
+    <script src="~/Scripts/Kendo/kendo.all.min.js"></script>
+    <script src="~/Scripts/Admin/morris/morris.min.js"></script>
+    <script src="~/Scripts/Admin/plugins/fastclick/fastclick.js"></script>
+    <script src="~/Scripts/Admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Scripts/Admin/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/Scripts/jquery.PostMvcAjax.js"></script>
+    <script src="~/Scripts/Bootstrap/Colorpicker.js"></script>
+    <script src="~/Scripts/farbtastic.js"></script>
+    
+</head>
+<body class="hold-transition sidebar-mini text-right" style="direction: rtl;">
+
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand bg-dark  navbar-dark border-bottom border-radios-0">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars fa-lg "></i></a>
+                </li>
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav mr-auto">
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <i class="nav-icon fa fa-home fa-lg text-info" data-toggle="tooltip" title="خانه"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="right fa fa-th-list fa-lg text-danger" data-toggle="tooltip" title="سایر منوها"></i>
+                    </a>
+                </li>
+          
+
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <aside id="sidebar" class="main-sidebar sidebar-light-info elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link text-left text-lg">
+                <label class="switch">
+                    <input type="checkbox" id="themeSwitch" onchange="resetTheme()" />
+                    <span class="slider round elevation-1" data-toggle="tooltip" data-placement="right" title="تغییر رنگ منو"></span>
+                </label>
+            </a>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div>
+             
+
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="image">
+                                <img src="/Content/Img/user-icon.png" class="brand-image img-circle elevation-3 user"
+                                     style="opacity: .8" alt="User Image">
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <div class="info display-inline-flex text-center">
+                                <a href="#" class="d-block">
+                                    @User.Identity.Name
+                                    خوش آمدید
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="@Url.Action(MVC.Account.Account.Actions.LogOff())" class="btn btn-outline-danger">خروج</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item  ">
+                                @if ("/admin/humen/index" == ("/admin/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower() + "/" + ViewContext.RouteData.Values["Action"].ToString().ToLower()) || "/admin/humen/index" == ("/admin/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower()))
+                                {
+
+                                    <a href="/Admin/Humen/Index" class="nav-link    active">
+                                        <i class="nav-icon fas fa-circle-notch "></i>
+                                        <p>
+                                            مدیریت اشخاص
+                                     
+                                        </p>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Admin/Humen/Index" class="nav-link">
+                                        <i class="nav-icon fas fa-circle-notch "></i>
+                                        <p>
+                                            مدیریت اشخاص
+                                     
+                                        </p>
+                                    </a>
+                                }
+                               
+                            </li>
+                            
+                            <li class="nav-item text-right">
+                                @if ("/admin/users/index" == ("/admin/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower() + "/" + ViewContext.RouteData.Values["Action"].ToString().ToLower()) || "/Admin/Users/Index" == ("/admin/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower()))
+                                {
+
+                                    <a href="/Admin/Users/Index" class="nav-link    active">
+                                        <i class="nav-icon fas fa-circle-notch "></i>
+                                        <p>مدیریت کاربران</p>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Admin/Users/Index" class="nav-link ">
+                                        <i class="nav-icon fas fa-circle-notch "></i>
+                                        <p>مدیریت کاربران</p>
+                                    </a>
+                                }
+                                
+                            </li>
+                            <li class="nav-item text-right">
+                                @if ("/admin/AreaMaps/index" == ("/admin/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower().ToString() + "/" + ViewContext.RouteData.Values["Action"].ToString().ToLower()) || "/admin/AreaMaps" == ("/admin/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower()))
+                                {
+
+                                    <a href="/Admin/AreaMaps/Index" class="nav-link    active">
+                                        <i class="nav-icon fas fa-circle-notch "></i>
+                                        <p>مدیریت نقشه</p>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Admin/AreaMaps/Index" class="nav-link ">
+                                        <i class="nav-icon fas fa-circle-notch "></i>
+                                        <p>مدیریت نقشه</p>
+                                    </a>
+                                }
+                            </li>
+                           
+                            <li class="nav-item text-right">
+                                @if ("/admin/MapAreaTypes/index" == ("/admin/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower().ToString() + "/" + ViewContext.RouteData.Values["Action"].ToString().ToLower()) || "/admin/MapAreaTypes" == ("/admin/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower()))
+                                {
+
+                                    <a href="/Admin/MapAreaTypes/Index" class="nav-link    active">
+                                        <i class="nav-icon fas fa-circle-notch "></i>
+                                        <p>نوع موقعیت انتخابی</p>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="/Admin/MapAreaTypes/Index" class="nav-link ">
+                                        <i class="nav-icon fas fa-circle-notch "></i>
+                                        <p>نوع موقعیت انتخابی</p>
+                                    </a>
+                                }
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        @RenderBody()
+                    </div>
+                </div>
+            </section>
+        </div>
+       
+    </div>
+    <!-- Control Sidebar -->
+    <script>
+        var themeSwitch = document.getElementById('themeSwitch');
+        $(document).ready(function () {
+            
+                  
+            if (themeSwitch) {
+                initTheme(); // on page load, if user has already selected a specific theme -> apply it
+
+            }
+            $('#themeSwitch').tooltip();
+            $(".parentnav").click(function (e) {
+
+                e.preventDefault();
+                var parentLi = $("ul").find('[class="nav nav-treeview"][style="display: block;"]').parent();
+                var treeviewMenu = $("ul").find('[class="nav nav-treeview"][style="display: block;"]');
+                var isopen = $(this).parent().hasClass("menu-open");
+
+                if (isopen) {
+                    return;
+                } else {
+                    treeviewMenu.slideUp(300, function (e) {
+                        treeviewMenu.slideUp(500);
+                        treeviewMenu.removeAttr("style");
+                        treeviewMenu.attr("style", "display: none;");
+                    });
+
+                    parentLi.removeClass("menu-open");
+
+                }
+
+
+
+            });
+
+        });
+        //$(window).on('load', function () {
+        //    $("#coverScreen").hide();
+        //});
+        function initTheme() {
+            var localstor = localStorage.getItem('themeSwitch');
+            var darkThemeSelected = (localStorage.getItem('themeSwitch') !== null && localStorage.getItem('themeSwitch') === 'true');
+            // update checkbox
+
+            themeSwitch.checked = darkThemeSelected;
+            // update body data-theme attribute
+            resetTheme();
+
+        };
+
+        function resetTheme() {
+
+            if (themeSwitch.checked) { // dark theme has been selected
+                localStorage.setItem('themeSwitch', 'true');
+                $("#sidebar").removeClass("sidebar-light-info");
+                $(".main-header").removeClass("bg-white navbar-light");
+                $("#sidebar").addClass("sidebar-dark-primary");
+                $(".main-header").addClass("bg-dark navbar-dark");
+                $('.k-state-active').children('span').attr("style", "background-color:#333a40 !important");
+
+
+
+            } else {
+                localStorage.removeItem('themeSwitch');
+                $("#sidebar").removeClass("sidebar-dark-primary");
+                $(".main-header").removeClass("bg-dark navbar-dark");
+                $("#sidebar").addClass("sidebar-light-info");
+                $(".main-header").addClass("bg-white navbar-light");
+                $('.k-state-active').children('span').removeAttr("style");
+
+                // reset theme selection
+            }
+
+        };
+    </script>
+
+</body>
+</html>

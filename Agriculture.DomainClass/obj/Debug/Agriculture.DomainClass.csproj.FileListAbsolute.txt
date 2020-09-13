@@ -1,0 +1,6 @@
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.DomainClass\bin\Debug\Agriculture.DomainClass.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.DomainClass\bin\Debug\Agriculture.DomainClass.pdb
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.DomainClass\obj\Debug\Agriculture.DomainClass.csproj.CoreCompileInputs.cache
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.DomainClass\obj\Debug\Agriculture.DomainClass.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.DomainClass\obj\Debug\Agriculture.DomainClass.pdb
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.DomainClass\obj\Debug\Agriculture.DomainClass.csprojAssemblyReference.cache

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Agriculture.DomainClass.Models.AreaMap>
+
+@{
+    ViewBag.Title = "مدیریت نقشه";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("ویرایش ناحیه", "Create",null,new{@class="btn btn-success mt-2"})
+</p>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+    <div id="map" style="width: 100%;height:500px ;  position: relative;"></div>
+</div>
+
+<script>
+    var locationIcon = L.icon({ iconUrl: 'location_marker_icon.png' });
+    var map = L.map('map').setView([31.2500, 48.6993], 12);
+    // create map and set zoom level and center coordinates
+    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib }).addTo(map);
+
+    //var map =  L.map('map').setView([31.2500, 48.6993], 12);
+    //L.tileLayer('https://developers.parsijoo.ir/web-service/v1/map/?type=tile&x={x}&y={y}&z={z}&apikey=cf4b262aa1de4a6d8e7974d25f9cdb96', {
+    //    maxZoom: 21,
+    //}).addTo(map);
+   
+    $(document).ready(function() {
+      
+
+        showPolygone();
+
+    });
+
+    function showPolygone() {
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+        $.ajax({    //create an ajax request to display.php
+            type: "Post",
+            url:  '@Url.Content(Url.Action(MVC.Admin.AreaMaps.GetMapPoint()))',
+           //expect html to be returned
+            success: function (response) {
+                console.log(response);
+                var polyLayers = [];
+                for (i in response) {
+                    var polygon = L.polygon([
+                        response[i].mapPoints,
+                    ]);
+                    
+                    polygon.setStyle({ fillColor: response[i].color });
+                    console.log(polygon);
+                    polyLayers.push(polygon);
+                }
+
+                for(let layer of polyLayers) {
+                    drawnItems.addLayer(layer); 
+                }
+            }
+
+        });
+    }
+
+
+
+
+
+
+</script>
+

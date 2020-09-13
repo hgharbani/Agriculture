@@ -1,0 +1,14 @@
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\Agriculture.Data.dll.config
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\Agriculture.Data.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\Agriculture.Data.pdb
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\Agriculture.DomainClass.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\EntityFramework.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\Agriculture.DomainClass.pdb
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\EntityFramework.xml
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\obj\Debug\Agriculture.Data.csprojAssemblyReference.cache
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\obj\Debug\Agriculture.Data.csproj.CoreCompileInputs.cache
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\obj\Debug\Agriculture.Data.csproj.CopyComplete
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\obj\Debug\Agriculture.Data.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Data\obj\Debug\Agriculture.Data.pdb

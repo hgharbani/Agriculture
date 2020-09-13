@@ -1,0 +1,241 @@
+﻿@using Agriculture.DomainClass.Models
+@model Agriculture.Model.ViewModel.AddOrUpdateAreaMap
+
+<div class="modal fade mt-3" id="setAreaMap" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ثبت ناحیه های انتخاب شده</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            @Html.LabelFor(model => model.AreaName, new {@class = "col-sm-2 col-xs-2 control-label text-left "})
+                            <div class="col-sm-7 col-xs-7 dropdown top10 " style="direction: ltr; font-family: Times New Roman">
+                                @Html.TextBoxFor(a => a.AreaName, new {@class = "form-control"})
+                            </div>
+
+                        </div>
+                      
+                    </div>
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            @Html.LabelFor(model => model.AreaTypeId, new {@class = "col-sm-2 col-xs-2 control-label text-left "})
+                            <div class="col-sm-7 col-xs-7 dropdown top10 " style="direction: ltr; font-family: Times New Roman">
+                                @Html.DropDownListFor(model => model.AreaTypeId, new SelectList(Model.AvilableAreaTypes, "Id", "TypeName", new {@class = "form-control dropdown w-100"}))
+                            </div>
+                        </div>
+                     
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal">بستن</button>
+
+                <button id="btnSubmit" type="button" class="btn btn-primary">ذخیره</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#AreaTypeId").kendoDropDownList({});
+        var buttons = ['#btnSubmit'];
+                $("#btnSubmit")
+                    .click(function(event) {
+                        if (confirm("آیا نسبت به ثبت نهايي مطمئن هستید؟ پس از ثبت نهايي قابليت ويرايش اسناد را نداريد")
+                        ) {
+
+                            var notification;
+                            event.preventDefault();
+                            var addAreaMap = {
+                                AreaName: $("#@Html.IdFor(model => model.AreaName)").val(),
+                                AreaTypeId: $("#@Html.IdFor(model => model.AreaTypeId)").val(),
+                            };
+                            addAreaMap.MapPoints = [];
+                            for (i in _latlng) {
+                                console.log(_latlng[i]);
+                                var data= {
+                                    LatMap: _latlng[i].lat,
+                                    LngMap: _latlng[i].lng,
+
+                                }
+                                addAreaMap.MapPoints.push(data) ;
+                            }
+
+                            console.log(addAreaMap);
+                            $.PostMvcDataAjax({
+                                baseEvent: event,
+                                postUrl: '@Url.Content(Url.Action(MVC.Admin.AreaMaps.Create()))',
+                                data: addToken({ areaMapModel: addAreaMap }),
+                                loginUrl: '/login',
+                                beforePostHandler: function() {
+                                    //disableButtons(buttons);
+                                },
+                                completeHandler: function(data) {
+                                    console.log(data);
+                                },
+                                errorHandler:
+                                    function() {
+                                        //enableButtons(buttons);
+                                    }
+                            });
+
+
+                    }
+                    });
+
+        showPolygone();
+    });
+
+    var polyLayers = [];
+    function showPolygone() {
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+        $.ajax({    //create an ajax request to display.php
+            type: "Post",
+            url:  '@Url.Content(Url.Action(MVC.Admin.AreaMaps.GetMapPoint()))',
+            //expect html to be returned
+            success: function (response) {
+                console.log(response);
+
+                for (i in response) {
+                    var polygon = L.polygon([
+                        response[i].mapPoints,
+                    ]);
+
+                    polygon.setStyle({ fillColor: response[i].color });
+                    console.log(polygon);
+                    polyLayers.push(polygon);
+                }
+
+                for(let layer of polyLayers) {
+                    drawnItems.addLayer(layer);
+                }
+            }
+
+        });
+    }
+
+    function checkPoly(point) {
+        showAllPolyGonInDbLoad();
+        debugger;
+        var result=false;
+        if (point == null || point == "") {
+            var polygon = L.polygon([
+                _latlng
+
+            ]).addTo(map);
+
+            for (i in polyLayers) {
+
+                result = ispolygonInsidePolygon(polygon, polyLayers[i]);
+               
+                if (result == true) {
+                    alert("نواحی باهم تداخل دارند")
+                    return result;
+                }
+            }
+        }
+        else {
+           
+            for (i in polyLayers) {
+
+                result = ispointInsidePolygon(point, polyLayers[i]);
+                if (result == true) {
+                    return result;
+                }
+            }
+
+        }
+
+    }
+
+    function ispointInsidePolygon(Newpoly, poly) {
+
+        var polyPoints = poly._latlngs;
+        var x = Newpoly.latlng.lat, y = Newpoly.latlng.lng;
+        console.log("polypoint"+polyPoints);
+        console.log("x="+x);
+        console.log("y="+y);
+        var inside = false;
+        for (a in polyPoints) {
+
+            var parent = polyPoints[a];
+            for (var i = 0, j = parent.length - 1; i < parent.length; j = i++) {
+                console.log(parent[i]);
+                var xi = parent[i].lat, yi = parent[i].lng;
+                var xj = parent[j].lat, yj = parent[j].lng;
+
+                var intersect = ((yi > y) != (yj > y))
+                    && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+                if (intersect) inside = !inside;
+            }
+
+        }
+       
+        return inside;
+    };
+
+
+    function ispolygonInsidePolygon(Newpoly, poly) {
+
+        debugger;
+        var polyPoints = poly._latlngs;
+        var inside = false;
+        for (n in polyPoints) {
+                    var child = polyPoints[n];
+                    for (var m = 0; m < child.length; m++) {
+                        inside = ispointsInsidePolygon(child[m], Newpoly);
+                        if (inside==true) {
+                            return inside;
+                        }
+                    }
+
+
+                } 
+    
+
+        return inside;
+    };
+
+    function ispointsInsidePolygon(Newpoly, poly) {
+
+        var polyPoints = poly._latlngs;
+        var x = Newpoly.lat, y = Newpoly.lng;
+        console.log("polypoint"+polyPoints);
+        console.log("x="+x);
+        console.log("y="+y);
+        var inside = false;
+        for (a in polyPoints) {
+
+            var parent = polyPoints[a];
+            for (var i = 0, j = parent.length - 1; i < parent.length; j = i++) {
+                console.log(parent[i]);
+                var xi = parent[i].lat, yi = parent[i].lng;
+                var xj = parent[j].lat, yj = parent[j].lng;
+
+                var intersect = ((yi > y) != (yj > y))
+                    && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+                if (intersect) inside = !inside;
+            }
+
+        }
+       
+        return inside;
+    };
+    function showAllPolyGonInDbLoad() {
+        var drawnItemsasd = new L.FeatureGroup();
+        map.addLayer(drawnItemsasd);
+       for(let layer of polyLayers) {
+            drawnItemsasd.addLayer(layer);
+        }
+    }
+</script>

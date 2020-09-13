@@ -1,0 +1,13 @@
+﻿@model string
+    
+@if (Model == ("/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower()) + "/" + ViewContext.RouteData.Values["Action"].ToString().ToLower() || @Model == ("/" + ViewContext.RouteData.Values["Controller"].ToString().ToLower()))
+{
+
+         <a href="/Admin/Humen/Index" class="nav-link ">
+                                    <i class="nav-icon fas fa-circle-notch "></i>
+                                    <p>
+                                       مدیریت اشخاص
+                                     
+                                    </p>
+                                </a>
+}

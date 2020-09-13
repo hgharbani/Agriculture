@@ -1,0 +1,17 @@
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\obj\Debug\Agriculture.Services.csproj.CoreCompileInputs.cache
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\Agriculture.Services.dll.config
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\Agriculture.Services.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\Agriculture.Services.pdb
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\EntityFramework.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\EntityFramework.SqlServer.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\EntityFramework.xml
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\EntityFramework.SqlServer.xml
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\obj\Debug\Agriculture.Services.csproj.CopyComplete
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\obj\Debug\Agriculture.Services.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\obj\Debug\Agriculture.Services.pdb
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\Agriculture.Data.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\Agriculture.DomainClass.dll
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\Agriculture.Data.pdb
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\Agriculture.Data.dll.config
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\bin\Debug\Agriculture.DomainClass.pdb
+E:\Drive E\برنامه نویسی\برنامه های من\bahrzadeh\Agriculture\Agriculture.Services\obj\Debug\Agriculture.Services.csprojAssemblyReference.cache

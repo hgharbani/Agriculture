@@ -1,0 +1,86 @@
+﻿@model Agriculture.Model.ViewModel.RegisterViewModel
+@{
+    ViewBag.Title = "ثبت نام";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background: -webkit-linear-gradient(left, rgba(200,200,200,0.2), rgba(230,230,230,1));
+    }
+</style>
+<div class="row register">
+    <div class="col-md-3 hidden-sm register-left">
+        <img src="/Content/img/Logo.png" alt="" />
+      
+        <h5>سامانه جهاد کشاورزی</h5>
+        <a href=@MVC.Account.Account.ActionNames.Login class="btn btn-outline-light mt-3">ورود</a>
+    </div>
+    <div class="col-md-9 register-right ">
+      
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div   class=" tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+             
+                <div class="row register-form">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            @Html.TextBoxFor(a=>a.FirstName,new {@class= "form-control",@placeholder="نام " })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                          
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(a=>a.LastName,new {@class= "form-control",@placeholder="نام خانوادگی" })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                         
+                        </div>
+                      
+                        <div class="form-group">
+                            @Html.TextBoxFor(a=>a.NationalNumber,new {@class= "form-control", @placeholder="کد ملی" })
+                            @Html.ValidationMessageFor(model => model.NationalNumber, "", new { @class = "text-danger" })
+
+                        </div>
+                        
+                            <div class="form-group">
+                                @Html.TextBoxFor(a=>a.MobileNumber,new {@class= "form-control", @minlength = "11", @maxlength = "11", @placeholder ="شماره همراه" })
+                                @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+
+                            </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            @Html.TextBoxFor(a=>a.UserName,new {@class= "form-control", @placeholder ="نام کاربری" })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(a => a.Email, new {@class = "form-control", @placeholder = "ایمیل"})
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(a => a.Password, new {@class = "form-control", @type = "password", @placeholder = "رمز عبور"})
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(a => a.RePassword, new {@class = "form-control", @type = "password", @placeholder = "تکرار رمز عبور"})
+                            @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+
+                        </div>
+
+
+                        
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <input type="submit" class="btn btn-success btnRegister" value="ثبت نام" />
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    }
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@model Agriculture.DomainClass.Models.User
+    @{
+    ViewBag.Title = "SuccessRegister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-success">
+    <p>کاربر <span>@Model.UserName</span> عزیز </p>
+    <p>جهت فعال سازی حساب خود به ایمیل وارد شده خود <span> @Model.Email</span>وارد شوید</p>
+</div>
+
+<div class="mt-2">
+    <hr />
+    <a href=@MVC.Account.Account.ActionNames.Login class="btn btn-primary mt-3">ورود</a>
+</div>
+

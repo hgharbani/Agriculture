@@ -1,0 +1,51 @@
+﻿@model Agriculture.DomainClass.Models.AreaMap
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AreaMap</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LatMap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LatMap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LngMap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LngMap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaTypeId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AreaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

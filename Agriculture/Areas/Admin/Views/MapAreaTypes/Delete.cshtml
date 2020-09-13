@@ -1,0 +1,45 @@
+﻿@model Agriculture.DomainClass.Models.MapAreaType
+
+@{
+    ViewBag.Title = "حذف";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="mt-2">
+  
+
+    @Html.ActionLink("بازگشت", @MVC.Admin.MapAreaTypes.ActionNames.Index, null, new {@class = "btn btn-secondary"})
+</div>
+    <p>   <hr /></p>
+
+</div>
+
+
+
+<hr/>
+<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+   
+    <div class="dl-horizontal row">
+        <div class="col-12">
+            <span class="font-weight-bold">آیا نسبت به حذف مورد زیر مطمئن هستید ؟</span>
+            <hr/>
+        </div>
+        <div class="col-md-2 border">
+            @Html.DisplayNameFor(model => model.TypeName)
+        </div>
+
+        <div class="col-md-10 border">
+            @Html.DisplayFor(model => model.TypeName)
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color mt-2 text-center">
+            <input type="submit" value="حذف" class="btn btn-danger w-25" /> 
+        </div>
+    }
+</div>

@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row register">
+    <div class="col-md-3 hidden-sm register-left" style="background-color: rgba(0, 46, 102, 0.8) !important; ">
+
+        <img src="/Content/img/Logo.png" alt="" />
+
+        <h5 >سامانه جهاد کشاورزی</h5>
+        <h1 class="mb-3">به زودی</h1>
+        <p class="mb-2"> سیستم مدیریت آب یاری زمین های کشاورزی با پهباد </p>
+        <a href="@MVC.Account.Account.ActionNames.Login" class="btn btn-outline-light mt-3">ورود به سایت</a>
+    </div>
+    <div class="col-md-9 register-right ">
+        <div class="overlay"></div>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="/Content/Video/UAVs.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+

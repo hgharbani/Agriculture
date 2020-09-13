@@ -1,0 +1,101 @@
+﻿@model Agriculture.Model.ViewModel.AddOrUpdateAreaMap
+
+@{
+    ViewBag.Title = "ویرایش ناحیه";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+<style>
+</style>
+<div class="row w-100">
+    
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="mt-2">
+  
+
+            @Html.ActionLink("بازگشت", @MVC.Admin.MapAreaTypes.ActionNames.Index, null, new {@class = "btn btn-secondary"})
+        </div>
+        <p>   <hr /></p>
+
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12 bg-gray-light mt-3">
+        <button class="btn btn-success" onclick="clearAllPointMap()">پاک کردن ناحیه انتخابی </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setAreaMap">
+            ثبت منطقه انتخابی
+        </button>
+        <button class="btn btn-success" onclick="checkPoly()">بررسی</button>
+        
+     
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+        <div id="map" style="width: 100%; height: 500px; position: relative;"></div>
+    </div>
+</div>
+@Html.Partial("_SetAreaMapType")
+
+
+<!-- script to create map and load secured services -->
+<script>
+        var locationIcon = L.icon({ iconUrl: 'location_marker_icon.png' });
+        var map = L.map('map').setView([31.2500, 48.6993], 12);
+        // create map and set zoom level and center coordinates
+        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+        var osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib }).addTo(map);
+
+        //var map =  L.map('map').setView([31.2500, 48.6993], 12);
+        //L.tileLayer('https://developers.parsijoo.ir/web-service/v1/map/?type=tile&x={x}&y={y}&z={z}&apikey=cf4b262aa1de4a6d8e7974d25f9cdb96', {
+        //    maxZoom: 21,
+        //}).addTo(map);
+
+
+    var _latlng = [];
+   
+        map.on("click",
+            function (e) {
+                clearMap();
+                var point = e;
+                if (checkPoly(e)) {
+                    alert("نقطه انتخابی در ناحیه دیگر می باشد");
+                    _latlng = [];
+                    return;
+                }
+                _latlng.push(point.latlng);
+                var polygon = L.polygon([
+                    _latlng
+
+                ]).addTo(map);
+               
+            });
+
+    function clearMap() {
+      
+            for(i in map._layers) {
+                if(map._layers[i]._path != undefined) {
+                    try {
+                        map.removeLayer(map._layers[i]);
+                    }
+                    catch(e) {
+                        console.log("problem with " + e + m._layers[i]);
+                    }
+                }
+            }
+         ;
+        }
+        function clearAllPointMap() {
+            for(i in map._layers) {
+                if(map._layers[i]._path != undefined) {
+                    try {
+                        map.removeLayer(map._layers[i]);
+                    }
+                    catch(e) {
+                        console.log("problem with " + e + m._layers[i]);
+                    }
+                }
+            }
+            _latlng = [];
+            showAllPolyGonInDbLoad();
+        }
+
+</script>
+

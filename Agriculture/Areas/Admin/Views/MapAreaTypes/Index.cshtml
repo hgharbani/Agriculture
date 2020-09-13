@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Agriculture.DomainClass.Models.MapAreaType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<p class="mt-2 mb-2">
+    @Html.ActionLink("وضعیت جدید", "Create", null, new { @class = "btn btn-success" })
+</p>
+<div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-12">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeName)
+                </td>
+                <td>
+                    <a href="@Url.Action(MVC.Admin.MapAreaTypes.Actions.ActionNames.Edit,new {id=item.Id})" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>|
+                    <a href="@Url.Action(MVC.Admin.MapAreaTypes.Actions.ActionNames.Delete,new {id=item.Id})" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+
+        </tbody>
+
+     
+    </table>
+
+</div>
+
